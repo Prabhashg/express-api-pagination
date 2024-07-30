@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Assignment1</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>Fake Store</h1>
+        </div>
+
+        <div class="container">
+            <div id="inputNumber">
+                <label for="numOfProductInputBox">Select Number Of Products To View</label>
+                <input type="number" id="numOfProductInputBox" min="1" value="10">
+                <button id="numOfProductBtn">Click to view</button>
+            </div>
+
+            <table>
+                <thead>
+                    <tr id="heading" style="">
+                        <th style="width: 5%; padding-left: 2%;">Id</th>
+                        <th style="width: 20%;">Title</th>
+                        <th style="width: 35%;">Description</th>
+                        <th style="width: 15%; padding-left: 0px;">Price</th>
+                        <th style="width: 15%;">Rating</th>
+                        <th style="width: 10%;">Image</th>
+                    </tr>
+                </thead>
+                <tbody id="products">
+                    
+                </tbody>
+            </table>
+
+        </div>
+
+        <p id="errorMessage"></p>
+        <script src="./index.js"></script>
+    </body>
+</html>
