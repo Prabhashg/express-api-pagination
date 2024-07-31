@@ -3,20 +3,37 @@ const products = require("../mock_data.json");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-    // let {page, records} = req.params;
-    // page = parseInt(page);
-    // records = parseInt(records);
-    // const startIndex = (page-1)*records;
-    // const endIndex = page*records;
-    // return res.status(200).json(products.slice(startIndex, endIndex));
-    console.log("data fetched from api successfully")
-    return res.status(200).json(products);
+    let {page, records} = req.query;
+    // console.log(`before parsing Int, value of page: ${page} and !page: ${!page}`);
+    // if(!page || !records) {
+    //     console.log("page or records or both not defined by client");
+    //     return res.status(200).json({});
+    // } 
+
+    page = parseInt(page);
+    records = parseInt(records);
+
+    // console.log(`after parsing Int, value of page: ${page} and !page: ${!page}`);
+    const startIndex = (page-1)*records;
+    const endIndex = page*records;
+    const data = products.slice(startIndex, endIndex);
+    console.log("data fetched from api successfully");
+    return res.status(200).json(data);
+    // return res.status(200).json(products);
 
 })
+
+// router.get("/length", (req, res) => {
+//     res.sendStatus(200).send(products.length);
+// })
 
 router.route("/:id")
     .get((req, res) => {
         const id = req.params.id;
+        // if(id === "length"){
+        //     // console.log(products.length);
+        //    return res.status(200).send(Object.keys(products).length);
+        // }
         const product = products.find(product => product.id === Number(id));
         if(!product){
             console.log("No product with matching id")
@@ -37,6 +54,8 @@ router.route("/:id")
         console.log(`delete request completed successfully with id ${id}`);
         res.end("delete request completed successfully");
     });
+
+
 
 router.post("/", (req, res) => {
     console.log(`post request completed successfully`);
